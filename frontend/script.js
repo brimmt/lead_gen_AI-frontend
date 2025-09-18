@@ -5,7 +5,7 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
     const password = document.getElementById("password").value;
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/login", {
+        const response = await fetch("https://leadgen-backend-vz8s.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({
@@ -32,7 +32,7 @@ async function searchLeads() {
   const industry = document.getElementById("industry").value;
   const location = document.getElementById("location").value;
 
-  const response = await fetch(`http://127.0.0.1:8000/leadsearch?industry=${industry}&location=${location}`, {
+  const response = await fetch(`https://leadgen-backend-vz8s.onrender.com/leadsearch?industry=${industry}&location=${location}`, {
     headers: { "Authorization": `Bearer ${token}` }
   });
 
@@ -164,7 +164,7 @@ async function searchLeads() {
     const token = localStorage.getItem("token");
 
     // 3. Call backend
-    const response = await fetch(`http://127.0.0.1:8000/leadsearch?industry=${industry}&location=${location}&role_hint=${role}&limit=${limit}`, {
+    const response = await fetch(`https://leadgen-backend-vz8s.onrender.com/leadsearch?industry=${industry}&location=${location}&role_hint=${role}&limit=${limit}`, {
         headers: { "Authorization": `Bearer ${token}` }
     });
 
@@ -196,4 +196,5 @@ function renderResults(results) {
 
     // Show results section if hidden
     document.getElementById("results-section").classList.remove("hidden");
+
 }
