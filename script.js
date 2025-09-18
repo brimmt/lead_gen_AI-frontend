@@ -198,3 +198,8 @@ function renderResults(results) {
 
 
 }
+
+document.getElementById("logout-btn").addEventListener("click", () => {
+    localStorage.removeItem("token");   // clear token
+    window.location.href = "index.html"; // back to login
+});
