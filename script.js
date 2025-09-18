@@ -8,16 +8,15 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
         const response = await fetch("https://leadgen-backend-vz8s.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-                username: username,
-                password: password
-            })
+            body: new URLSearchParams({ username, password })
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            localStorage.setItem("token", data.access_token); // save token
-            window.location.href = "dashboard.html"; // redirect
+        const data = await response.json();
+        console.log("Backend response:", data); // 👀 check what backend sends
+
+        if (response.ok && data.access_token) {
+            localStorage.setItem("token", data.access_token);
+            window.location.href = "dashboard.html";
         } else {
             document.getElementById("error-message").classList.remove("hidden");
         }
@@ -196,5 +195,6 @@ function renderResults(results) {
 
     // Show results section if hidden
     document.getElementById("results-section").classList.remove("hidden");
+
 
 }
